@@ -1,31 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header.js';
-import MainSetup from './components/MainSetup.js'
+import RecipeCard from './components/RecipeCard.js';
 
 
-class App extends React.Component {
+const App = () => {
 
-  getData = async(e) => {
-    e.preventDefault();
-    // const query = e.target.elements.query.value;
-    // const apiCall = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.APP_ID}&app_key=${process.env.APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free`);
-    // const data = await apiCall.json();
+  const [recipe, setRecipe] = useState([]);
+  const [query, setQuery] = useState("");
+  // const [alert, setAlert] = useState("");
 
-    // console.log(data);
-    console.log(process.env.APP_ID);
+  const getData = async() => {
+    const apiCall = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}&from=0&to=3&calories=591-722&health=alcohol-free`);
+    const data = await apiCall.json();
+    setRecipe(data.hits);
+    console.log(data);
+    setQuery("");
+    
   };
 
-  render(){
+  const onSubmit = (e) => {
+    e.preventDefault();
+    getData();
+  }
+
+  const onChange = (e) => {
+    setQuery(e.target.value);
+  }
+
+  
     return (
       <div id='app'>
-        <Header />
-        <MainSetup
-          getData={this.getData}
-        />
+        <Header/>
+        <form className="searchForm" onSubmit={onSubmit}>
+          <input type="text" placeholder="Search for food here" autoComplete="off" onChange={onChange} value={query}/>
+          <button type='submit'>Submit</button>
+        </form>
+        { recipe !== [] && recipe.map(recipe => (
+          <RecipeCard recipe={recipe} />
+        ))}
       </div>
     )
-  }
-}
+};
 
 export default App;
