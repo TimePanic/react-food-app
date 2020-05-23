@@ -11,10 +11,9 @@ const App = () => {
   // const [alert, setAlert] = useState("");
 
   const getData = async() => {
-    const apiCall = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}&from=0&to=10`);
+    const apiCall = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}&from=0&to=20`);
     const data = await apiCall.json();
     setRecipe(data.hits);
-    console.log(data);
     setQuery("");
     
   };
@@ -24,7 +23,7 @@ const App = () => {
     getData();
   }
 
-  const onChange = (e) => {
+  const onChangeQuery = (e) => {
     setQuery(e.target.value);
   }
 
@@ -34,8 +33,8 @@ const App = () => {
         <Header/>
         <div className='setup'>
           <form className="searchForm" onSubmit={onSubmit}>
-            <input type="text" placeholder="Search for food here" autoComplete="off" onChange={onChange} value={query}/>
-            <button type='submit'>Submit</button>
+            <input type="text" placeholder="Search for food here" autoComplete="off" onChange={onChangeQuery} value={query}/>
+            <button type='submit'>&rarr;</button>
           </form>
         </div>
         <div className='dashboard'>

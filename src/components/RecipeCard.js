@@ -17,12 +17,14 @@ const RecipeCard = ({recipe}) => {
     return (
             <div className="recipeCard">
                 <h1>{label}</h1>
-                <img src={image} alt={label}/>
+                <img src={image} alt={label} />
                 <h3>Approx time: {totalTime} mins</h3>
                 <h3>Total calories: {calories.toFixed(0)} kcals</h3>
-                <h2>Ingredients:</h2>
+                <h2 className='header'>Ingredients:</h2>
                 <Ingredients ingredients={ingredients} />
+                <h2 className="header">Allergy Information:</h2>
                 <AllergyInfo healthLabels={healthLabels} />
+                <h2 className="header">Nutritional Information</h2>
                 <div className="nutrition">
                     <NutrientsInfoFat FAT={FAT}/>
                     <NutrientsInfoPro PRO={PROCNT}/>
@@ -31,7 +33,7 @@ const RecipeCard = ({recipe}) => {
                 </div>
                 
                 
-                <h5>Click <a href={url} target='_blank'>HERE</a> to see the full recipe and how to make it</h5>
+                <h5 className='url'>Click <a href={url} rel="noopener noreferrer" target='_blank'>HERE</a> to see the full recipe and how to make it</h5>
             </div>
     );
 };
