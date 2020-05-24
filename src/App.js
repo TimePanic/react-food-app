@@ -10,11 +10,13 @@ const App = () => {
   const [recipe, setRecipe] = useState([]);
   const [query, setQuery] = useState("");
   const [alert, setAlert] = useState("");
+  const [results, setResults] = useState("2");
 
   const getData = async() => {
     if (query !== "") {
-      const apiCall = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}&from=0&to=20`);
+      const apiCall = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}&from=0&to=${results}`);
     const data = await apiCall.json();
+    console.log(data);
       if (!data.more) {
         setAlert("No food found with that name");
       } else {
@@ -38,14 +40,31 @@ const App = () => {
     setQuery(e.target.value);
   }
 
+  const onChangeRequests = (e) => {
+    setResults(e.target.value)
+  }
+
   
     return (
       <div id='app'>
         <Header/>
         <div className='setup'>
           <form className="searchForm" onSubmit={onSubmit}>
-            <input type="text" placeholder="Search for food here" autoComplete="off" onChange={onChangeQuery} value={query}/>
-            <button type='submit'>&rarr;</button>
+            {/* Food Name */}
+            <input type="text" id='foodInput' placeholder="Search for food here" autoComplete="off" onChange={onChangeQuery} value={query}/>
+
+            {/* Results */}
+            <label htmlFor="results">Results:</label>
+            <select name="results" id="results" onChange={onChangeRequests}>
+              <option value="2" selected>2</option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select>
+
+            {/* Submit Button */}
+            <button type='submit' id='submitButton'>Find Recipes!</button>
           </form>
           {alert!== "" && <Alert alert={alert}/>}
         </div>

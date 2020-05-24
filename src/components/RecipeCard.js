@@ -9,7 +9,7 @@ import NutrientsInfoSugar from './NutrientsInfoSugar.js';
 
 const RecipeCard = ({recipe}) => {
 
-    const { label, image, calories, ingredients, url, healthLabels, totalTime} = recipe.recipe;
+    const { label, image, calories, ingredients, url, healthLabels, totalTime, source} = recipe.recipe;
 
     const { CHOCDF, FAT, PROCNT, SUGAR  } = recipe.recipe.totalNutrients;
 
@@ -17,7 +17,7 @@ const RecipeCard = ({recipe}) => {
     return (
             <div className="recipeCard">
                 <h1>{label}</h1>
-                <img src={image} alt={label} />
+                <img id='recipeImg' src={image} alt={label} />
                 <h3>Approx time: {totalTime} mins</h3>
                 <h3>Total calories: {calories.toFixed(0)} kcals</h3>
                 <h2 className='header'>Ingredients:</h2>
@@ -32,7 +32,7 @@ const RecipeCard = ({recipe}) => {
                     <NutrientsInfoSugar SUGAR={SUGAR}/>
                 </div>
                 
-                
+                <h4>Recipe by: <span id='source'>{source}</span></h4>
                 <h5 className='url'>Click <a href={url} rel="noopener noreferrer" target='_blank'>HERE</a> to see the full recipe and how to make it</h5>
             </div>
     );
