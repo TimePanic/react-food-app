@@ -174,4 +174,17 @@ label {
   .allergyInfo{
     width: 100%;
   }
+
+  #results, label {
+    margin-top:1 0px;
+    display: block;
+  }
+  #results {
+    margin-left: 40%;
+    width: 20%;
+    border: 1px solid black;
+  }
+  label {
+    margin-left: 10px;
+  }
 }

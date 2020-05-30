@@ -54,14 +54,16 @@ const App = () => {
             <input type="text" id='foodInput' placeholder="Search for food here" autoComplete="off" onChange={onChangeQuery} value={query}/>
 
             {/* Results */}
-            <label htmlFor="results">Results:</label>
-            <select name="results" id="results" onChange={onChangeRequests}>
-              <option value="2" selected>2</option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-            </select>
+            <div className="results">
+              <label htmlFor="results">Results:</label>
+              <select name="results" id="results" onChange={onChangeRequests}>
+                <option value="2" selected>2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+              </select>
+            </div>
 
             {/* Submit Button */}
             <button type='submit' id='submitButton'>Find Recipes!</button>
