@@ -209,7 +209,7 @@ label {
   }
 
   #results, label {
-    margin-top:1 0px;
+    margin-top: 10px;
     display: block;
   }
   #results {
