@@ -16,7 +16,7 @@ This application was build using:
 - React JS
 
 Below you will find the user interface for the application:
-![alt-text](https://timepanic.co.uk/img/RecipeApp.jpg)
+![alt-text](https://timepanic.co.uk/img/RecipeApp1.jpg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
