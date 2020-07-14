@@ -1,4 +1,4 @@
-# Reach Food Recipe App
+# React Food Recipe App
 ### A recipe finder application built using React Javascript library
 ---
 
